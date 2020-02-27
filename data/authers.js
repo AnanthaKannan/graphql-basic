@@ -1,0 +1,22 @@
+module.exports = authours = [
+    {
+        name:"name1",
+        age:100,
+        id:1
+    },
+    {
+        name:"name2",
+        age:200,
+        id:2
+    },
+    {
+        name:"name3",
+        age:300,
+        id:3
+    },
+    {
+        name:"name4",
+        age:400,
+        id:4
+    }
+]

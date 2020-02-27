@@ -1,0 +1,32 @@
+module.exports = books = [
+   {
+       id:1,
+       name:"book1",
+       genre:"genre1",
+       authorid:1,
+   },
+   {
+    id:2,
+    name:"book2",
+    genre:"genre2",
+    authorid:2,
+},
+{
+    id:3,
+    name:"book3",
+    genre:"genre3",
+    authorid:1,
+},
+{
+    id:4,
+    name:"book4",
+    genre:"genre4",
+    authorid:1,
+},
+{
+    id:5,
+    name:"book5",
+    genre:"genre5",
+    authorid:1,
+},
+]

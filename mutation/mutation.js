@@ -15,7 +15,7 @@ module.exports = new GraphQLObjectType({
             type: type.AuthorType,
             args:{
                 name: { type: new GraphQLNonNull(GraphQLString) },
-                age:{ type: new GraphQLNonNull(GraphQLInt) }
+                age:{ type: new GraphQLNonNull(GraphQLInt) },
             },
             resolve(parent, args){
                 let author = new Author({
@@ -34,6 +34,7 @@ module.exports = new GraphQLObjectType({
             },
             resolve(parent, args){
                 let book = new Book(args);
+                console.log(book)
                 return book.save()
             }
         }

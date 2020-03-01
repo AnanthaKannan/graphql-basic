@@ -1,7 +1,8 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLID, GraphQLList,
-    GraphQLString, GraphQLInt } = graphql
-const authors = require('../data/authers');
+    GraphQLString, GraphQLInt } = graphql;
+const Author = require('../model/author')
+const Book = require('../model/book')
 // const books = require('../data/books')
 
 
@@ -14,7 +15,7 @@ const AuthorType = new GraphQLObjectType({
         books:{
             type: new GraphQLList(BookType),
             resolve(parent, args){
-                const result = books.filter(obj => obj.authorid == parent.id);
+                const result = Book.find({authorid:parent.id})
                 return result;
             }
         }
@@ -27,10 +28,12 @@ const BookType = new GraphQLObjectType({
         id:{ type: GraphQLID },
         name:{ type: GraphQLString },
         genre:{ type: GraphQLString},
+        authorid:{ type:GraphQLID },
         auther:{
             type:AuthorType,
             resolve(parent, args){
-                const result = authors.find((obj) => obj.id == parent.id);
+                console.log('parent_id', parent.authorid)
+                const result = Author.findOne({_id:parent.authorid})
                 return result;
             }
         }

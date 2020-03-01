@@ -3,8 +3,8 @@ const { GraphQLObjectType, GraphQLID, GraphQLSchema, GraphQLList } = graphql
 
 const type = require("../type/type");
 
-const  books  = require('../data/books')
-const authors = require('../data/authers')
+const Author = require('../model/author')
+const Book = require('../model/book')
 const Mutation = require('../mutation/mutation')
 
 
@@ -16,7 +16,8 @@ const RootQuary = new GraphQLObjectType({
             type: type.BookType,
             args: { id: { type: GraphQLID}},
             resolve(parent, args){
-                const result = books.find((obj) => obj.id == args.id);
+                console.log(args.id)
+                const result = Book.findOne({_id:args.id})
                 return result;
                 // code to get data from databasee
             }
@@ -25,7 +26,7 @@ const RootQuary = new GraphQLObjectType({
             type:type.AuthorType,
             args: { id: { type: GraphQLID}},
             resolve(parent, args){
-                const result = authors.find((obj) => obj.id == args.id);
+                const result = Author.find({_id:args.id})
                 return result;
                 // code to get data from databasee
             }
@@ -33,13 +34,15 @@ const RootQuary = new GraphQLObjectType({
         books:{
             type: new GraphQLList(type.BookType),
             resolve(parent, args){
-                return books
+                const result = Book.find();
+                return result
             }
         },
         authors:{
             type: new GraphQLList(type.AuthorType),
             resolve(parent, args){
-                return authors
+                const result = Author.find();
+                return result
             }
         }
     }
@@ -51,7 +54,3 @@ module.exports = new GraphQLSchema({
 })
 
 
-// book(id:"2"){
-//     name
-//     genre
-// }
